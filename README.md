@@ -1,7 +1,5 @@
 # Ghostface
 
-![Ghostface Killa](./ghostface.jpg)
-
 Like [jsdom-eval](https://github.com/hayes/jsdom-eval) but for phantomjs.
 
 ## Usage:
