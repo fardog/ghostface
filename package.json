@@ -1,0 +1,27 @@
+{
+  "name": "ghostface",
+  "version": "1.0.0",
+  "description": "run javascript in a phantomjs context",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AWinterman/ghostface.git"
+  },
+  "keywords": [
+    "phantom",
+    "context",
+    "evaluate",
+    "testing",
+    "headless",
+    "browser"
+  ],
+  "author": "Andrew Winterman <andywinterman@gmail.com>",
+  "license": "Apache v2",
+  "bugs": {
+    "url": "https://github.com/AWinterman/ghostface/issues"
+  },
+  "homepage": "https://github.com/AWinterman/ghostface"
+}
