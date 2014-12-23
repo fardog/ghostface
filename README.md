@@ -1,3 +1,5 @@
+NOT PUBLISH/FUNCTIONAL (yet)
+
 # Ghostface
 
 Like [jsdom-eval](https://github.com/hayes/jsdom-eval) but for phantomjs.

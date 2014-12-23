@@ -1,14 +1,22 @@
-var fs = require('fs')
-var format = require('util').format
 var http = require('http')
 var childProcess = require('child_process')
+var SourceMapConsumer = require('source-map').SourceMapConsumer
+var convert = require('convert-soruce-map')
+var fs = require('fs')
+var path = require('path')
 
-function onbundle(err, data) {
-  if(err) {
-    return exit(err)
+module.exports = function(script, html, log) {
+  var sourcemap = convert.fromSource(script)
+
+  if(!html) {
+    html = fs.readFileSync(path.join(__dirname, 'client', 'default.html'))
   }
 
-  var html = format(fs.readFileSync('./page.html').toString(), data)
+
+  if(sourcemap) {
+    log.debug('producing sourcemap')
+    sourcemap = new SourceMapConsumer(sourcemap.toJSON())
+  }
 
   var server = http.createServer(function(req, resp) {
     log.debug('got request')
@@ -27,7 +35,7 @@ function onbundle(err, data) {
 
     var phantom = childProcess.spawn(
         'phantomjs'
-      , ['./it.phantom.js', address.port, address.address ]
+      , ['./client.phantom.js', address.port, address.address ]
     )
 
     phantom.stdout.on('data', ondata)
@@ -58,7 +66,12 @@ function onbundle(err, data) {
   })
 }
 
-function exit(err) {
-  process.stderr.write(err.trace)
+
+
+function exit(log, err) {
+  if(err) {
+    log.error(err.trace)
+  }
+
   process.exit(1)
 }

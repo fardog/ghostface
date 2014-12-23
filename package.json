@@ -23,5 +23,9 @@
   "bugs": {
     "url": "https://github.com/AWinterman/ghostface/issues"
   },
-  "homepage": "https://github.com/AWinterman/ghostface"
+  "homepage": "https://github.com/AWinterman/ghostface",
+  "dependencies": {
+    "convert-source-map": "^0.4.1",
+    "source-map": "^0.1.41"
+  }
 }
