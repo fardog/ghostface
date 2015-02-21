@@ -1,20 +1,33 @@
 // this is a phantomjs script. NOT a node script.
 var webpage = require('webpage')
-var system = require('system')
+  , system = require('system')
 
-var args = system.args
-
-var port = args[1]
-var address = args[2]
 var page = webpage.create()
+  , js = phantom.args[0]
 
 page.onConsoleMessage = onConsoleMessage
+phantom.onError = onError
 
-function onConsoleMessage(msg) {
-  console.log(msg)
-}
+page.content = [
+    '<html>'
+  , '<head>'
+  , '<style type="text/css">'
+  , '* { margin: 0; padding: 0; }'
+  , '</style>'
+  , '</head>'
+  , '<body>'
+  , '</body>'
+  , '</html>'
+].join('\n')
 
-phantom.onError = function(msg, trace) {
+// this function executes `run` in a sandbox, we pass it the js string
+page.evaluate(run, js)
+
+system.stdout.write('\n')
+
+phantom.exit(0)
+
+function onError(msg, trace) {
   var msgStack = ['PHANTOM ERROR: ' + msg]
   if (trace && trace.length) {
     msgStack.push('TRACE:')
@@ -32,4 +45,10 @@ phantom.onError = function(msg, trace) {
   phantom.exit(1)
 }
 
-page.open('http://' + address + ':' + port)
+function onConsoleMessage(msg) {
+  system.stdout.write(msg)
+}
+
+function run(js) {
+  eval(js)
+}

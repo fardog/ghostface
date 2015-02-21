@@ -3,6 +3,7 @@
 var chalk = require('chalk')
 
 var cli = require('../lib/cli')
+  , lib = require('../lib')
 
 var error = chalk.bold.red
 
@@ -21,5 +22,5 @@ cli(process.argv.slice(2), function(err, message, options) {
     return
   }
 
-  console.log(options.file)
+  lib(options)
 })
