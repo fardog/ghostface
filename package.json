@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "run javascript in a phantomjs context",
   "main": "index.js",
+  "bin": {
+    "ghostface": "./bin/ghostface.js"
+  },
   "scripts": {
     "test": "node test.js"
   },
@@ -19,13 +22,23 @@
     "browser"
   ],
   "author": "Andrew Winterman <andywinterman@gmail.com>",
-  "license": "Apache v2",
+  "contributors": [
+    "Nathan Wittstock <nate@milkandtang.com>"
+  ],
+  "license": "APACHE-V2",
   "bugs": {
     "url": "https://github.com/AWinterman/ghostface/issues"
   },
   "homepage": "https://github.com/AWinterman/ghostface",
   "dependencies": {
+    "chalk": "^0.5.1",
+    "concat-stream": "^1.4.7",
     "convert-source-map": "^0.4.1",
+    "minimist": "^1.1.0",
+    "phantomjs": "^1.9.15",
     "source-map": "^0.1.41"
+  },
+  "devDependencies": {
+    "tape": "^3.5.0"
   }
 }
