@@ -3,7 +3,7 @@ var webpage = require('webpage')
   , system = require('system')
 
 var page = webpage.create()
-  , js = phantom.args[0]
+  , js = system.stdin.read()
 
 page.onConsoleMessage = onConsoleMessage
 phantom.onError = onError

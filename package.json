@@ -32,7 +32,6 @@
   "homepage": "https://github.com/AWinterman/ghostface",
   "dependencies": {
     "chalk": "^0.5.1",
-    "concat-stream": "^1.4.7",
     "convert-source-map": "^0.4.1",
     "minimist": "^1.1.0",
     "phantomjs": "^1.9.15",
