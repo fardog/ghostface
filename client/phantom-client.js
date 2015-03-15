@@ -1,5 +1,5 @@
 /* eslint-env browser */
-/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-eval */
 /* global phantom, window */
 
 // this is a phantomjs script. NOT a node script.
@@ -29,7 +29,7 @@ function onError(msg, trace) {
         + (t.file || t.sourceURL)
         + ': '
         + t.line
-        + (t.function ? ' (in function ' + t.function +')' : '')
+        + (t.function ? ' (in function ' + t.function + ')' : '')
       )
     })
   }
@@ -46,73 +46,6 @@ function onConsoleMessage(msg) {
   system.stdout.write(msg + '\n')
 }
 
-function run(js) {
-  var _timeout = window.setTimeout
-    , _interval = window.setInterval
-    , _immediate = window.setImmediate
-    , _ctimeout = window.clearTimeout
-    , _cinterval = window.clearInterval
-
-  var _timeouts = []
-    , _intervals = []
-    , _immediates = []
-
-  window.setTimeout = function(cb, ms) {
-    var id = _timeout(timeout, ms)
-
-    _timeouts.push(id)
-
-    return id
-
-    function timeout() {
-      var index = _timeouts.indexOf(id)
-
-      if(index > -1) {
-        _timeouts.splice(index, 1)
-      }
-      cb()
-    }
-  }
-
-  window.clearTimeout = function(id) {
-    var index = _timeouts.indexOf(id)
-    if(index > -1) {
-      _timeouts.splice(index, 1)
-    }
-
-    return _ctimeout(id)
-  }
-
-  window.setInterval = function(cb, ms) {
-    var id = _interval(cb, ms)
-
-    _intervals.push(id)
-
-    return id
-  }
-
-  window.clearInterval = function(id) {
-    var index = _intervals.indexOf(id)
-    if(index) {
-      _intervals.splice(index, 1)
-    }
-
-    return _cinterval(id)
-  }
-
-  eval(js)
-
-  setTimeout(checkRunning, 100)
-
-  function checkRunning() {
-    var running = _intervals.length + _timeouts.length
-
-    if(!running) {
-      window.callPhantom()
-
-      return
-    }
-
-    setTimeout(checkRunning, 100)
-  }
+function run(c) {
+  eval(c)
 }

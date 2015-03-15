@@ -16,8 +16,7 @@ cli(process.argv.slice(2), function(err, message, options) {
       console.error(e.message)
     })
     return
-  }
-  else if (message) {
+  } else if (message) {
     console.log(message)
     return
   }
