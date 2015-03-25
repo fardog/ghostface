@@ -1,7 +1,5 @@
 # ghostface
 
-**This project is still in development, and is not yet published.**
-
 Evaluate Javascript in PhantomJS, and print the output.
 
 Inspired by [jsdom-eval][], this module
