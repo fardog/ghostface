@@ -1,7 +1,7 @@
 {
   "name": "ghostface",
-  "version": "1.0.0",
-  "description": "run javascript in a phantomjs context",
+  "version": "0.1.0",
+  "description": "Evaluate Javascript in PhantomJS, and print the output.",
   "main": "index.js",
   "bin": {
     "ghostface": "./bin/ghostface.js"
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/AWinterman/ghostface.git"
+    "url": "https://github.com/fardog/ghostface.git"
   },
   "keywords": [
     "phantom",
@@ -21,15 +21,15 @@
     "headless",
     "browser"
   ],
-  "author": "Andrew Winterman <andywinterman@gmail.com>",
+  "author": "Nathan Wittstock <nate@milkandtang.com>",
   "contributors": [
-    "Nathan Wittstock <nate@milkandtang.com>"
+    "Andrew Winterman <andywinterman@gmail.com>"
   ],
   "license": "APACHE-V2",
   "bugs": {
-    "url": "https://github.com/AWinterman/ghostface/issues"
+    "url": "https://github.com/fardog/ghostface/issues"
   },
-  "homepage": "https://github.com/AWinterman/ghostface",
+  "homepage": "https://github.com/fardog/ghostface",
   "dependencies": {
     "chalk": "^0.5.1",
     "debounce-stream": "^2.0.0",
