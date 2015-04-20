@@ -7,7 +7,7 @@
     "ghostface": "./bin/ghostface.js"
   },
   "scripts": {
-    "test": "node test/*.js"
+    "test": "tape test/*.js"
   },
   "repository": {
     "type": "git",
@@ -41,6 +41,7 @@
   "devDependencies": {
     "concat-stream": "^1.4.8",
     "phantomjs": "^1.9.16",
+    "proxyquire": "^1.4.0",
     "tape": "^4.0.0",
     "through": "^2.3.7"
   }
