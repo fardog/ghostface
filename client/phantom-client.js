@@ -12,6 +12,8 @@ var page = webpage.create()
 
 page.onConsoleMessage = onConsoleMessage
 page.onCallback = onCallback
+page.onError = onError
+
 phantom.onError = onError
 
 page.content = fs.read(phantom.args[0])
@@ -20,20 +22,12 @@ page.content = fs.read(phantom.args[0])
 page.evaluateAsync(run, 0, js)
 
 function onError(msg, trace) {
-  var msgStack = ['PHANTOM ERROR: ' + msg]
-  if (trace && trace.length) {
-    msgStack.push('TRACE:')
-    trace.forEach(function(t) {
-      msgStack.push(
-          ' -> '
-        + (t.file || t.sourceURL)
-        + ': '
-        + t.line
-        + (t.function ? ' (in function ' + t.function + ')' : '')
-      )
-    })
+  var error = {
+      message: msg
+    , trace: trace
   }
-  system.stderr.write(msgStack.join('\n'))
+
+  system.stderr.write(JSON.stringify(error))
   phantom.exit(1)
 }
 

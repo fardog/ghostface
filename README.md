@@ -2,6 +2,9 @@
 
 Evaluate Javascript in PhantomJS, and print the output.
 
+[![Build Status](http://img.shields.io/travis/fardog/ghostface/master.svg?style=flat)](https://travis-ci.org/fardog/ghostface)
+[![npm install](http://img.shields.io/npm/dm/ghostface.svg?style=flat)](https://www.npmjs.org/package/ghostface)
+
 Inspired by [jsdom-eval][], this module
 makes it trivial to run tests in a headless browser.
 
@@ -23,22 +26,22 @@ test('always passes', function(t) {
 Run it with `ghostface`:
 
 ```bash
-$ browserify test.js | ghostface
+$ browserify test.js | ghostface | faucet
 ```
 
-See the TAP output printed to the console:
+See the output printed to the console:
 
 ```
-TAP version 13
-# always passes
-ok 1 (unnamed assert)
-
-1..1
+✓ always passes
 # tests 1
 # pass  1
-
-# ok
+✓ ok
 ```
+
+**Note:** In the example above, we pipe output to [faucet][], which parses TAP
+output and sets the correct exit codes; `ghostface` is just evaluating
+javascript, it doesn't know/care what the output is, or how to set the correct
+exit codes.
 
 ## Usage
 
@@ -78,3 +81,4 @@ with `--forever`. Note you will have to send a `SIGHUP` to end execution.
 [jsdom-eval]: https://github.com/hayes/jsdom-eval
 [tape]: https://github.com/substack/tape
 [browserify]: https://github.com/substack/node-browserify
+[faucet]: https://github.com/substack/faucet
