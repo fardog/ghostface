@@ -18,17 +18,17 @@ test('executes simple js', function(t) {
       input: js
     , html: './test/fixtures/test.html'
     , phantomPath: phantom.path
-    , timeout: 5
+    , timeout: 10
   }
 
-  p.stdout.on('data', function(data) {
+  p.stdout.pipe(concat(function(data) {
     t.equal(data.toString(), 'simple test\n', 'output should match')
-  })
+  }))
 
   lib(options, p, done)
 
   function done(code) {
-    t.notOk(code, 'exit code should be clean')
+    t.equal(code, 0, 'exit code should be clean')
   }
 })
 
@@ -42,17 +42,53 @@ test('executes fibonacci for some reason', function(t) {
       input: js
     , html: './test/fixtures/test.html'
     , phantomPath: phantom.path
-    , timeout: 5
+    , timeout: 10
   }
 
-  p.stdout.on('data', function(data) {
+  p.stdout.pipe(concat(function(data) {
     t.equal(data.toString(), '1.1043307057295211e+125\n', 'output should match')
-  })
+  }))
 
   lib(options, p, done)
 
   function done(code) {
-    t.notOk(code, 'exit code should be clean')
+    t.equal(code, 0, 'exit code should be clean')
+  }
+})
+
+test('fails and sets correct exit code', function(t) {
+  t.plan(3)
+
+  var js = fs.createReadStream('./test/fixtures/fail.js')
+    , p = makeProcessObject()
+
+  var options = {
+      input: js
+    , html: './test/fixtures/test.html'
+    , phantomPath: phantom.path
+    , timeout: 100
+  }
+
+  p.stdout.pipe(concat(function(data) {
+    t.equal(data.length, 0)
+  }))
+
+  p.stderr.pipe(concat(function(data) {
+    t.deepEqual(
+        JSON.parse(data.toString())
+      , {
+            message: 'TypeError: \'undefined\' is not a function ' +
+              '(evaluating \'console.derp(\'whoops\')\')'
+          , trace: [ { file: '', function: '', line: 1 } ]
+        }
+      , 'output should match'
+    )
+  }))
+
+  lib(options, p, done)
+
+  function done(code) {
+    t.equal(code, 1, 'exit code should not be clean')
   }
 })
 
@@ -78,7 +114,7 @@ test('handles timeouts when set', function(t) {
   lib(options, p, done)
 
   function done(code) {
-    t.notOk(code, 'exit code should be clean')
+    t.equal(code, 0, 'exit code should be clean')
   }
 })
 
