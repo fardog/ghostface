@@ -31,14 +31,14 @@
   },
   "homepage": "https://github.com/fardog/ghostface",
   "dependencies": {
-    "chalk": "^0.5.1",
+    "chalk": "^1.0.0",
     "debounce-stream": "^2.0.0",
     "merge-stream": "^0.1.7",
-    "minimist": "^1.1.0",
-    "semver": "^4.3.0",
-    "which": "^1.0.8"
+    "minimist": "^1.1.1",
+    "semver": "^4.3.3",
+    "which": "^1.0.9"
   },
   "devDependencies": {
-    "tape": "^3.5.0"
+    "tape": "^4.0.0"
   }
 }
