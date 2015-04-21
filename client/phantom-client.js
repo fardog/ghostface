@@ -16,7 +16,7 @@ page.onError = onError
 
 phantom.onError = onError
 
-page.content = fs.read(phantom.args[0])
+page.content = fs.read(system.args[0])
 
 // this function executes `run` in a sandbox, we pass it the js string
 page.evaluateAsync(run, 0, js)
