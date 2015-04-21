@@ -32,14 +32,16 @@
   "homepage": "https://github.com/fardog/ghostface",
   "dependencies": {
     "chalk": "^1.0.0",
+    "concat-stream": "^1.4.8",
+    "convert-source-map": "^1.0.0",
     "debounce-stream": "^2.0.0",
     "merge-stream": "^0.1.7",
     "minimist": "^1.1.1",
     "semver": "^4.3.3",
+    "source-map": "^0.4.2",
     "which": "^1.0.9"
   },
   "devDependencies": {
-    "concat-stream": "^1.4.8",
     "phantomjs": "^1.9.16",
     "proxyquire": "^1.4.0",
     "tape": "^4.0.0",

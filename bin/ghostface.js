@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+var sprintf = require('util').format
 
 var chalk = require('chalk')
 
