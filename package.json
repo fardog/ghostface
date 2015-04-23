@@ -25,7 +25,7 @@
   "contributors": [
     "Andrew Winterman <andywinterman@gmail.com>"
   ],
-  "license": "APACHE-V2",
+  "license": "APACHE-2.0",
   "bugs": {
     "url": "https://github.com/fardog/ghostface/issues"
   },

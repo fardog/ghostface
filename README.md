@@ -1,12 +1,21 @@
 # ghostface
 
-Evaluate Javascript in PhantomJS, and print the output.
+Evaluate javascript in PhantomJS, and print the output.
 
 [![Build Status](http://img.shields.io/travis/fardog/ghostface/master.svg?style=flat)](https://travis-ci.org/fardog/ghostface)
 [![npm install](http://img.shields.io/npm/dm/ghostface.svg?style=flat)](https://www.npmjs.org/package/ghostface)
 
 Inspired by [jsdom-eval][], this module
 makes it trivial to run tests in a headless browser.
+
+## Installation
+
+`npm install -g ghostface` will expose the `ghostface` command in your
+environment.
+
+`ghostface` does *not* include [phantomjs][] as a dependency; you should install
+that however works best in your environment, and `ghostface` will find it so
+long as it exists in your `$PATH`.
 
 ## Example
 
@@ -46,9 +55,9 @@ exit codes.
 ## Usage
 
 ```
-$ ghostface.js --help
+$ ghostface --help
 
-Usage: /home/nwittstock/Projects/ghostface/bin/ghostface.js [options] [file]
+Usage: ghostface [options] [file]
 
 file    Javascript file to be evaluated
 
@@ -82,3 +91,4 @@ with `--forever`. Note you will have to send a `SIGHUP` to end execution.
 [tape]: https://github.com/substack/tape
 [browserify]: https://github.com/substack/node-browserify
 [faucet]: https://github.com/substack/faucet
+[phantomjs]: http://phantomjs.org/
