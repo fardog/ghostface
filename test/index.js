@@ -106,7 +106,7 @@ test('handles timeouts when set', function(t) {
   var now = Date.now()
 
   p.stdout.pipe(concat(function() {
-    t.ok(approx(600, Date.now() - now, 100), 'should take approximately 600ms')
+    t.ok(approx(600, Date.now() - now, 150), 'should take approximately 600ms')
   }))
 
   lib(options, p, done)
@@ -159,6 +159,9 @@ function makeProcessObject() {
   return p
 }
 
-function approx(num, equal, skew) {
-  return Math.abs(num - equal) < skew
+function approx(number, compare, skew) {
+  var lower = compare - skew
+    , upper = compare + skew
+
+  return lower < number && number < upper
 }
