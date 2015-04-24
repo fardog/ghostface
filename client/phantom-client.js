@@ -5,7 +5,6 @@
 // this is a phantomjs script. NOT a node script.
 var webpage = require('webpage')
   , system = require('system')
-  , fs = require('fs')
 
 var page = webpage.create()
   , js = system.stdin.read()
@@ -16,10 +15,19 @@ page.onError = onError
 
 phantom.onError = onError
 
-page.content = fs.read(system.args[0])
+page.open(system.args[1], function(stat) {
+  if(stat !== 'success') {
+    system.stderr.write(
+        'Phantom cannot open requested html file: "' + system.args[1] + '"'
+    )
+    phantom.exit(1)
 
-// this function executes `run` in a sandbox, we pass it the js string
-page.evaluateAsync(run, 0, js)
+    return
+  }
+
+  // this function executes `run` in a sandbox, we pass it the js string
+  page.evaluateAsync(run, 0, js)
+})
 
 function onError(msg, trace) {
   var error = {

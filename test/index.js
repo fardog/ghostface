@@ -1,5 +1,4 @@
 var fs = require('fs')
-  , exec = require('child_process').exec
 
 var test = require('tape')
   , through = require('through')
@@ -23,6 +22,30 @@ test('executes simple js', function(t) {
 
   p.stdout.pipe(concat(function(data) {
     t.equal(data.toString(), 'simple test\n', 'output should match')
+  }))
+
+  lib(options, p, done)
+
+  function done(code) {
+    t.equal(code, 0, 'exit code should be clean')
+  }
+})
+
+test('loads the requested html file', function(t) {
+  t.plan(2)
+
+  var js = fs.createReadStream('./test/fixtures/get-title.js')
+    , p = makeProcessObject()
+
+  var options = {
+      input: js
+    , html: './test/fixtures/test.html'
+    , phantomPath: phantom.path
+    , timeout: 10
+  }
+
+  p.stdout.pipe(concat(function(data) {
+    t.equal(data.toString(), 'test html\n', 'should get page title')
   }))
 
   lib(options, p, done)
