@@ -17,6 +17,8 @@ environment.
 that however works best in your environment, and `ghostface` will find it so
 long as it exists in your `$PATH`.
 
+`ghostface` supports phantomjs versions `^1.9.0` or `^2.0.0`.
+
 ## Example
 
 Imagine a [browserify][] project that you're testing using [tape][]:
@@ -86,6 +88,11 @@ html; the JS will be evaluated after the page loads.
 By default, execution is stopped if no console output is seen for over 1000ms.
 You can override this timeout with `--timeout <ms>`, or choose to run forever
 with `--forever`. Note you will have to send a `SIGHUP` to end execution.
+
+## License
+
+This project is licensed under the Apache License, Version 2.0. See
+[LICENSE](./LICENSE) for the full license.
 
 [jsdom-eval]: https://github.com/hayes/jsdom-eval
 [tape]: https://github.com/substack/tape
