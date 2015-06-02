@@ -8,7 +8,14 @@ var cli = require('../lib/cli')
 
 var error = chalk.bold.red
 
-cli(process.argv.slice(2), function(err, message, options) {
+module.exports = {
+    exit: onExit
+  , cli: onCli
+}
+
+cli(process.argv.slice(2), onCli)
+
+function onCli(err, message, options) {
   if(err) {
     console.error(
         error(
@@ -27,7 +34,13 @@ cli(process.argv.slice(2), function(err, message, options) {
     return
   }
 
-  lib(options, process, function(code) {
-    process.exit(code)
-  })
-})
+  lib(options, process, onExit)
+}
+
+function onExit(code, signal) {
+  if(code > 0) {
+    console.error(sprintf('\nphantomjs exited abnormally: %d'), code)
+  }
+
+  process.exit(code || signal === 'SIGTERM' ? 0 : 1)
+}

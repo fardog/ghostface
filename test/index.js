@@ -26,8 +26,8 @@ test('executes simple js', function(t) {
 
   lib(options, p, done)
 
-  function done(code) {
-    t.equal(code, 0, 'exit code should be clean')
+  function done(code, signal) {
+    t.equal(signal, 'SIGTERM', 'should have been terminated')
   }
 })
 
@@ -50,8 +50,8 @@ test('loads the requested html file', function(t) {
 
   lib(options, p, done)
 
-  function done(code) {
-    t.equal(code, 0, 'exit code should be clean')
+  function done(code, signal) {
+    t.equal(signal, 'SIGTERM', 'should have been terminated')
   }
 })
 
@@ -74,8 +74,8 @@ test('executes fibonacci for some reason', function(t) {
 
   lib(options, p, done)
 
-  function done(code) {
-    t.equal(code, 0, 'exit code should be clean')
+  function done(code, signal) {
+    t.equal(signal, 'SIGTERM', 'should have been terminated')
   }
 })
 
@@ -107,7 +107,7 @@ test('fails and sets correct exit code', function(t) {
 
   lib(options, p, done)
 
-  function done(code) {
+  function done(code, signal) {
     p.stderr.write(null)
     t.equal(code, 1, 'exit code should not be clean')
   }
@@ -134,8 +134,8 @@ test('handles timeouts when set', function(t) {
 
   lib(options, p, done)
 
-  function done(code) {
-    t.equal(code, 0, 'exit code should be clean')
+  function done(code, signal) {
+    t.equal(signal, 'SIGTERM', 'should have been terminated')
   }
 })
 
