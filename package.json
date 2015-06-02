@@ -35,8 +35,6 @@
     "chalk": "^1.0.0",
     "concat-stream": "^1.4.8",
     "convert-source-map": "^1.0.0",
-    "debounce-stream": "^2.0.0",
-    "merge-stream": "^0.1.7",
     "minimist": "^1.1.1",
     "semver": "^4.3.3",
     "source-map": "^0.4.2",
