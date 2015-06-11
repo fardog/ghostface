@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.3.0] - 2015-06-02
+- Changes the way timeouts are handled; fixes issues where stream buffering
+  would cause incorrect timeouts to occur.
+
 ## [1.2.1] - 2015-06-01
 - If phantom exits or crashes for any reason other than a timeout, report a
   message to stderr.
@@ -57,3 +61,4 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 [1.1.1]: https://github.com/fardog/ghostface/compare/v1.1.0...v1.1.1
 [1.1.2]: https://github.com/fardog/ghostface/compare/v1.1.1...v1.1.2
 [1.2.1]: https://github.com/fardog/ghostface/compare/v1.1.2...v1.2.1
+[1.3.0]: https://github.com/fardog/ghostface/compare/v1.2.1...v1.3.0
