@@ -42,5 +42,5 @@ function onExit(code, signal) {
     console.error(sprintf('\nphantomjs exited abnormally: %d'), code)
   }
 
-  process.exit(code || signal === 'SIGTERM' ? 0 : 1)
+  process.exit(code || (signal === 'SIGTERM' ? 0 : 1))
 }
