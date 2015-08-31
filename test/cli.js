@@ -11,6 +11,7 @@ var cli = proxyquire(
 
 var PHANTOM_1_PATH = './test/stubs/phantom-1.9'
   , PHANTOM_2_PATH = './test/stubs/phantom-2.0'
+  , PHANTOM_2_PRERELEASE = './test/stubs/phantom-2.0-dev'
   , PHANTOM_BAD_PATH = './test/stubs/phantom-bad'
 
 test('sets sane defaults', function(t) {
@@ -46,6 +47,22 @@ test('allows phantom 2.0', function(t) {
     t.equal(options.phantomPath, PHANTOM_2_PATH)
   }
 })
+
+test('allows phantom 2.0-dev', function(t) {
+  t.plan(1)
+
+  cli(['-p', PHANTOM_2_PRERELEASE, './test/fixtures/simple.js'], done)
+
+  function done(err, msg, options) {
+    if(err) {
+      t.fail(err[0].message)
+      t.end()
+    }
+
+    t.equal(options.phantomPath, PHANTOM_2_PRERELEASE)
+  }
+})
+
 
 test('fails on an unknown phantom', function(t) {
   t.plan(1)
@@ -89,7 +106,9 @@ test('number expecting parameters require numbers', function(t) {
 })
 
 function whichSync(str) {
-  if(str.match('2')) {
+  if(str.match('dev')) {
+    return PHANTOM_2_PRERELEASE
+  } else if(str.match('2')) {
     return PHANTOM_2_PATH
   } else if(str.match('bad')) {
     return PHANTOM_BAD_PATH
