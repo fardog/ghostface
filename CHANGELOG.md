@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## HEAD
+- Updates to [standard](http://standardjs.com) style
+- Adds doc on using ghostface programatically
+- Miscellaneous README improvements
+
 ## [1.5.0] - 2015-08-31
 - Allows version 2.0.1-development to be used
 

@@ -1,5 +1,5 @@
-function doTimeout(n) {
-  setTimeout(function() {
+function doTimeout (n) {
+  setTimeout(function () {
     console.log(n)
     doTimeout(n * 1.1)
   }, n)

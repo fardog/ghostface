@@ -2,8 +2,9 @@
 
 Evaluate javascript in PhantomJS, and print the output.
 
-[![Build Status](http://img.shields.io/travis/fardog/ghostface/master.svg?style=flat)](https://travis-ci.org/fardog/ghostface)
-[![npm install](http://img.shields.io/npm/dm/ghostface.svg?style=flat)](https://www.npmjs.org/package/ghostface)
+[![Build Status][buildstatusimg]][buildstatus]
+[![npm install][npminstallimg]][npminstall]
+[![js-standard-style][jsstandardimg]][jsstandard]
 
 Inspired by [jsdom-eval][], this module
 makes it trivial to run tests in a headless browser.
@@ -37,20 +38,25 @@ test('always passes', function(t) {
 Run it with `ghostface`:
 
 ```bash
-$ browserify test.js | ghostface | faucet
+$ browserify test.js | ghostface | tap-set-exit
 ```
 
 See the output printed to the console:
 
 ```
-✓ always passes
+TAP version 13
+# always passes
+ok 1 (unnamed assert)
+
+1..1
 # tests 1
 # pass  1
-✓ ok
+
+# ok
 ```
 
-**Note:** In the example above, we pipe output to [faucet][], which parses TAP
-output and sets the correct exit codes; `ghostface` is just evaluating
+**Note:** In the example above, we pipe output to [tap-set-exit][], which parses
+TAP output and sets the correct exit codes; `ghostface` is just evaluating
 javascript, it doesn't know/care what the output is, or how to set the correct
 exit codes.
 
@@ -97,5 +103,12 @@ This project is licensed under the Apache License, Version 2.0. See
 [jsdom-eval]: https://github.com/hayes/jsdom-eval
 [tape]: https://github.com/substack/tape
 [browserify]: https://github.com/substack/node-browserify
-[faucet]: https://github.com/substack/faucet
+[tap-set-exit]: http://npm.im/tap-set-exit
 [phantomjs]: http://phantomjs.org/
+
+[buildstatus]: https://travis-ci.org/fardog/ghostface
+[npminstall]: https://www.npmjs.org/package/ghostface
+[jsstandard]: https://github.com/feross/standard
+[buildstatusimg]: http://img.shields.io/travis/fardog/ghostface/master.svg?style=flat-square
+[npminstallimg]: http://img.shields.io/npm/dm/ghostface.svg?style=flat-square
+[jsstandardimg]: https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square
